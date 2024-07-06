@@ -14,11 +14,11 @@
 
   <div class="tasks-wrapper">
     <div class="container tasks-container">
-    
-      <h2 class="date">Friday July 31 1998</h2>
-
+      <h2 class="today">Friday July 31 1998</h2>
       <div class="tasks-navigation">
-        <p><span id="task-counter">0</span> tasks</p>
+        <p>
+          <span id="completed-task-counter">0</span> / <span id="task-counter">0</span>
+           tasks</p>
         <nav>
           <ul id="filter-tasks" class="list-inline filter-tasks">
             <li class="selected">All</li>
@@ -27,36 +27,17 @@
           </ul>
         </nav>
       </div>
-
-      <form>
+      <form id="task-form">
         <input
           type="text"
           id="add-task-input"
           class="task-input"
           placeholder="Add a new task..."
+          autocomplete="off"
         >
       </form>
-
       <div class="separated-line"></div>
-
-      <ul id="tasks-list" class="list tasks-list">
-
-        <li class="task" data-id="1">
-          <i class="fa-regular fa-circle task__unchecked"></i>
-          <i class="fa-regular fa-circle-check task__checked"></i>
-          <p class="task__text">Write a "To-Do List App" on web</p>
-          <i class="fa-regular fa-circle-xmark task__remove"></i>
-        </li>
-
-        <li class="task" data-id="2">
-          <i class="fa-regular fa-circle task__unchecked"></i>
-          <i class="fa-regular fa-circle-check task__checked"></i>
-          <p class="task__text">Buy some coffee</p>
-          <i class="fa-regular fa-circle-xmark task__remove"></i>
-        </li>
-
-      </ul>
-
+      <ul id="tasks-list" class="list tasks-list"></ul>
     </div>
   </div>
   
