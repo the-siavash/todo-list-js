@@ -117,6 +117,7 @@ class UI {
       const id = event.target.parentNode.dataset.id;
       if (event.target.classList.contains('task__remove')) {
         this.removeTask(id, event.target.parentNode);
+        if (tasksList.children.length === 0) separatedLine.style.display = 'none';
       } else if (event.target.classList.contains('task__checked')) {
         this.changeTaskState(id);
       } else if (event.target.classList.contains('task__unchecked')) {
