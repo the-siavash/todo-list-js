@@ -73,12 +73,14 @@ class UI {
     taskForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const task = new Task();
-      task.setTaskContent(taskInput.value);
-      taskInput.value = '';
-      tasks.push(task);
-      LocalStorage.saveTasks(tasks);
-      this.displayTasks(task);
-      this.setTaskCounter(tasks);
+      if (taskInput.value) {
+        task.setTaskContent(taskInput.value);
+        taskInput.value = '';
+        tasks.push(task);
+        LocalStorage.saveTasks(tasks);
+        this.displayTasks(task);
+        this.setTaskCounter(tasks);
+      }
     });
   }
 
@@ -133,7 +135,7 @@ class UI {
           node.classList.remove('selected')
         );
         event.target.classList.add('selected');
-        // 
+        //
         this.updateDisplayTasks();
         this.poppulateTasks();
       }
