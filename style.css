@@ -22,7 +22,6 @@
   --yellow-900: #713f12;
   --yellow-950: #422006;
   --red-500: #ef4444;
-  --green-600: #65a30d;
   --whitespace-container: 3rem;
 }
 
@@ -148,7 +147,7 @@ body {
 }
 
 .task__checked {
-  color: var(--green-600);
+  color: var(--yellow-400);
 }
 
 .task__unchecked {

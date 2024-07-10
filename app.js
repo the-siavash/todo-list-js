@@ -5,8 +5,10 @@ const tasksList = document.querySelector('#tasks-list');
 const tasksCounter = document.querySelector('#task-counter');
 const completedTasksCounter = document.querySelector('#completed-task-counter');
 const separatedLine = document.querySelector('.separated-line');
+const filterTasks = document.querySelector('#filter-tasks');
 
 let tasks;
+let filter = 'all';
 
 class Task {
   id = Date.now();
@@ -21,9 +23,25 @@ class Task {
 class UI {
   setupUI() {
     tasks = LocalStorage.getTasks();
-    tasks.forEach((task) => this.displayTasks(task));
+    this.poppulateTasks();
     this.setTaskCounter(tasks);
     this.setCompletedTaskCounter(tasks);
+  }
+
+  poppulateTasks() {
+    switch (filter) {
+      case 'all':
+        tasks.forEach((task) => this.displayTasks(task));
+        break;
+      case 'active':
+        const activeTasks = tasks.filter((task) => !task.isCompleted);
+        activeTasks.forEach((task) => this.displayTasks(task));
+        break;
+      case 'completed':
+        const completedTasks = tasks.filter((task) => task.isCompleted);
+        completedTasks.forEach((task) => this.displayTasks(task));
+        break;
+    }
   }
 
   displayTasks(task) {
@@ -49,7 +67,6 @@ class UI {
     while (tasksList.hasChildNodes()) {
       tasksList.removeChild(tasksList.lastChild);
     }
-    this.setupUI();
   }
 
   addTask() {
@@ -73,6 +90,7 @@ class UI {
     taskNode.remove();
     // update taskCounter in DOM
     this.setTaskCounter(tasks);
+    this.setCompletedTaskCounter(tasks);
   }
 
   setTaskCounter(tasks) {
@@ -89,6 +107,9 @@ class UI {
     selectedTask.isCompleted = !selectedTask.isCompleted;
     LocalStorage.saveTasks(tasks);
     this.updateDisplayTasks();
+    this.poppulateTasks();
+    this.setTaskCounter(tasks);
+    this.setCompletedTaskCounter(tasks);
   }
 
   eventLogics() {
@@ -100,6 +121,20 @@ class UI {
         this.changeTaskState(id);
       } else if (event.target.classList.contains('task__unchecked')) {
         this.changeTaskState(id);
+      }
+    });
+
+    filterTasks.addEventListener('click', (event) => {
+      filter = event.target.id;
+      if (event.target.id !== 'filter-tasks') {
+        // remove and add '.selected' style
+        [...filterTasks.children].forEach((node) =>
+          node.classList.remove('selected')
+        );
+        event.target.classList.add('selected');
+        // 
+        this.updateDisplayTasks();
+        this.poppulateTasks();
       }
     });
   }
