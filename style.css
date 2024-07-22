@@ -21,7 +21,7 @@
   --yellow-800: #854d0e;
   --yellow-900: #713f12;
   --yellow-950: #422006;
-  --red-500: #ef4444;
+  --red-400: #f87171;
   --whitespace-container: 3rem;
 }
 
@@ -48,6 +48,8 @@ body {
   background-color: var(--yellow-200);
 }
 
+/* utilities */
+
 .container {
   width: 600px;
 }
@@ -59,11 +61,11 @@ body {
 }
 
 .tasks-wrapper {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 8rem;
 }
 
 /* today */
@@ -115,6 +117,7 @@ body {
   border: none;
   width: 100%;
   padding: 1.4rem 0;
+  color: var(--neutral-700);
 }
 .task-input::placeholder {
   color: var(--neutral-400);
@@ -127,6 +130,9 @@ body {
   gap: 1rem;
   padding-block: 1.2rem;
   padding-inline: 3rem;
+}
+.task:last-child {
+  border-radius: 0 0 14px 14px;
 }
 .task:hover {
   background-color: var(--neutral-50);
@@ -144,6 +150,7 @@ body {
 .task i {
   font-size: 1.8rem;
   cursor: pointer;
+  height: 1cap;
 }
 
 .task__checked {
@@ -156,7 +163,7 @@ body {
 
 .task__remove {
   display: none;
-  color: var(--red-500);
+  color: var(--red-400);
 }
 .task:hover .task__remove {
   display: inline;
@@ -191,4 +198,48 @@ form {
 .separated-line {
   border-bottom: 1px solid var(--neutral-200);
   display: none;
+}
+
+.btn {
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.7rem 2.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--neutral-700);
+  transition: all 0.4s;
+}
+
+.btn--primary {
+  background-color: var(--neutral-700);
+  color: #fff;
+}
+.btn--primary:hover {
+  background-color: var(--yellow-300);
+  color: var(--neutral-700);
+  border-color: var(--yellow-300);
+}
+
+.btn--outline {
+  background-color: #fff;
+  color: var(--neutral-700);
+}
+.btn--outline:hover {
+  background-color: var(--red-400);
+  color: var(--neutral-700);
+  border-color: var(--red-400);
+}
+
+.top-notification {
+  width: 100vw;
+  height: 40px;
+  background-color: var(--yellow-200);
+  color: var(--neutral-700);
+  position: absolute;
+  top: 0;
+  font-size: 1.6rem;
+  font-family: ubuntu, sans-serif;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
