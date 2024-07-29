@@ -1,1 +1,1 @@
-# ToDo List App with HTML/CSS/JS
+# Just another simple ToDo List App with HTML/CSS/JS

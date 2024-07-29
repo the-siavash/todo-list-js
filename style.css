@@ -22,6 +22,7 @@
   --yellow-900: #713f12;
   --yellow-950: #422006;
   --red-400: #f87171;
+  --green-400: #a3e635;
   --whitespace-container: 3rem;
 }
 
@@ -54,8 +55,11 @@ body {
   width: 600px;
 }
 
+.unvisible {
+  visibility: hidden;
+}
+
 .tasks-container {
-  /* padding: 3rem; */
   box-shadow: 0 4px 18px 8px #0a0a0a0c;
   border-radius: 14px;
 }
@@ -68,6 +72,12 @@ body {
   margin-top: 8rem;
 }
 
+@media screen and (max-width: 600px) {
+  body {
+    padding-inline: 1rem;
+  }
+}
+
 /* today */
 .today {
   font-size: 2.2rem;
@@ -77,12 +87,24 @@ body {
 
 /* tasks-navigation */
 .tasks-navigation {
-  /* font-size: 2rem; */
   color: var(--neutral-500);
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 370px) {
+  .today {
+    text-align: center;
+  }
+  .tasks-navigation {
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+  }
 }
 
 .filter-tasks li {
@@ -146,6 +168,9 @@ body {
   display: inline-block;
   flex-basis: 100%;
 }
+.task__text:focus {
+  outline: 0;
+}
 
 .task i {
   font-size: 1.8rem;
@@ -167,6 +192,42 @@ body {
 }
 .task:hover .task__remove {
   display: inline;
+}
+
+.task__edit {
+  display: none;
+  color: var(--neutral-400);
+}
+.task:hover .task__edit {
+  display: inline;
+}
+
+.task__done {
+  color: var(--green-400);
+}
+
+.task__cancel {
+  color: var(--red-400);
+}
+
+@media screen and (max-width: 768px) {
+  .task__remove,
+  .task__edit {
+    display: inline;
+  }
+}
+
+.display-none,
+.task:hover .display-none {
+  display: none;
+}
+
+.edit {
+  background-color: var(--yellow-50);
+  z-index: 10;
+}
+.edit:hover {
+  background-color: var(--yellow-50);
 }
 
 /* whitespace */
